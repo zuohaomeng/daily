@@ -11,5 +11,5 @@ import org.apache.rocketmq.remoting.exception.RemotingException;
 public interface MqProducerService {
      void sendMesDemo() throws MQClientException, Exception;
      void sendMesDefault() throws InterruptedException, RemotingException, MQClientException, MQBrokerException;
-     void sendMes(String topic,String tag,String message);
+     void sendMes(String tag,String message);
 }

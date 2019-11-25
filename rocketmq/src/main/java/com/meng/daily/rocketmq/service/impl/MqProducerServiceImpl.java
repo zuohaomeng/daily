@@ -20,6 +20,7 @@ import javax.annotation.Resource;
 @Service
 @Slf4j
 public class MqProducerServiceImpl implements MqProducerService {
+    private static final String TOPIC ="DemoTopic";
     @Resource
     private DefaultMQProducer mqProducer;
 
@@ -34,8 +35,8 @@ public class MqProducerServiceImpl implements MqProducerService {
     }
 
     @Override
-    public void sendMes(String topic, String tag, String message) {
-        Message message1 = new Message(topic, tag, message.getBytes());
+    public void sendMes(String tag, String message) {
+        Message message1 = new Message(TOPIC, tag, message.getBytes());
         try {
             mqProducer.send(message1);
         } catch (MQClientException e) {
@@ -51,15 +52,12 @@ public class MqProducerServiceImpl implements MqProducerService {
 
     @Override
     public void sendMesDemo() throws Exception {
-        DefaultMQProducer producer = new
-                DefaultMQProducer("please_rename_unique_group_name");
+        DefaultMQProducer producer = new DefaultMQProducer("please_rename_unique_group_name");
         producer.setNamesrvAddr("192.168.186.128:9876");
         producer.start();
         for (int i = 0; i < 100; i++) {
-            Message msg = new Message("DemoTopic" /* Topic */,
-                    "TagA" /* Tag */,
-                    ("Hello RocketMQ " +
-                            i).getBytes(RemotingHelper.DEFAULT_CHARSET) /* Message body */
+            Message msg = new Message(TOPIC,"TagA",
+                    ("Hello RocketMQ " + i).getBytes(RemotingHelper.DEFAULT_CHARSET)
             );
             SendResult sendResult = producer.send(msg);
             System.out.printf("%s%n", sendResult);

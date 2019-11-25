@@ -41,11 +41,11 @@ public class MQController {
     }
 
     @GetMapping("/sendmes")
-    public String sendMes(String topic, String tag, String message) {
-        if (StringUtils.isEmpty(topic) || StringUtils.isEmpty(tag) || StringUtils.isEmpty(message)) {
+    public String sendMes(String tag, String message) {
+        if (StringUtils.isEmpty(tag) || StringUtils.isEmpty(message)) {
             return "为空";
         }
-        mqProducerService.sendMes(topic, tag, message);
+        mqProducerService.sendMes(tag, message);
         return "sendmes";
     }
 }
