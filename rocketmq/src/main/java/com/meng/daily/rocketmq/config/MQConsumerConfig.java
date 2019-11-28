@@ -16,8 +16,8 @@ import org.springframework.context.annotation.Configuration;
  * @author 梦醉
  * @date 2019/11/24--17:21
  */
-@Configuration
 @Slf4j
+@Configuration
 public class MQConsumerConfig {
     @Value("${rocketmq.consumer.namesrvAddr}")
     private String namesrvAddr;

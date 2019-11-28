@@ -11,6 +11,7 @@ import org.springframework.util.CollectionUtils;
 import java.util.List;
 
 /**
+ * 如何消费消息
  * @author 梦醉
  * @date 2019/11/24--17:42
  */

@@ -11,8 +11,8 @@ import org.springframework.context.annotation.Configuration;
  * @author 梦醉
  * @date 2019/11/24--17:22
  */
-@Configuration
 @Slf4j
+@Configuration
 public class MQProducerConfig {
     /**
      * 发送同一类消息的设置为同一个group，保证唯一,默认不需要设置，rocketmq会使用ip@pid(pid代表jvm名字)作为唯一标示
@@ -42,8 +42,10 @@ public class MQProducerConfig {
         DefaultMQProducer producer;
         producer = new DefaultMQProducer(this.groupName);
         producer.setNamesrvAddr(this.namesrvAddr);
+
         //如果需要同一个jvm中不同的producer往不同的mq集群发送消息，需要设置不同的instanceName
         //producer.setInstanceName(instanceName);
+
         if (this.maxMessageSize != null) {
             producer.setMaxMessageSize(this.maxMessageSize);
         }

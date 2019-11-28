@@ -1,7 +1,10 @@
 package com.meng.daily.rocketmq.controller;
 
+import com.meng.daily.rocketmq.constant.ResResult;
 import com.meng.daily.rocketmq.service.MqProducerService;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.rocketmq.client.producer.SendResult;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +23,7 @@ public class MQController {
     @Resource
     private MqProducerService mqProducerService;
 
+    @ApiOperation("构造生产者发送消息")
     @GetMapping("/send")
     public String send() {
         try {
@@ -29,23 +33,25 @@ public class MQController {
         }
         return "sendMesDemo";
     }
-
+    @ApiOperation("默认发送消息")
     @GetMapping("/sendMqByDefault")
     public String sendMqByDefault() {
         try {
             mqProducerService.sendMesDefault();
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("sendMqByDefault error",e);
         }
         return "sendMqByDefault";
     }
-
-    @GetMapping("/sendmes")
-    public String sendMes(String tag, String message) {
-        if (StringUtils.isEmpty(tag) || StringUtils.isEmpty(message)) {
-            return "为空";
+    @ApiOperation("同步发送消息")
+    @GetMapping("/syncSendMq")
+    public ResResult syncSendMq(){
+        try {
+            SendResult sendResult = mqProducerService.syncSendMq();
+            return ResResult.success(sendResult);
+        } catch (Exception e) {
+            log.error("syncSendMq error",e);
         }
-        mqProducerService.sendMes(tag, message);
-        return "sendmes";
+        return ResResult.error();
     }
 }

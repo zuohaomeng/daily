@@ -12,10 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
  * @author 梦醉
  * @date 2019/11/24--14:14
  */
+@Slf4j
 @RestController()
 @RequestMapping("/hello")
-@Api("hello测试")
-@Slf4j
 public class HelloController {
 
     @GetMapping("/hi")

@@ -1,5 +1,6 @@
 package com.meng.daily.rocketmq.service.impl;
 
+import com.meng.daily.rocketmq.constant.MQConstant;
 import com.meng.daily.rocketmq.service.MqProducerService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.exception.MQBrokerException;
@@ -9,9 +10,11 @@ import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.common.message.Message;
 import org.apache.rocketmq.remoting.common.RemotingHelper;
 import org.apache.rocketmq.remoting.exception.RemotingException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Random;
 
 /**
  * @author 梦醉
@@ -20,12 +23,19 @@ import javax.annotation.Resource;
 @Service
 @Slf4j
 public class MqProducerServiceImpl implements MqProducerService {
-    private static final String TOPIC ="DemoTopic";
+    @Value("${virtual.ip}")
+    private String IP;
+
+    private static final String TOPIC = MQConstant.DEMO_TIPIC;
     @Resource
     private DefaultMQProducer mqProducer;
 
+    private int count =0;
+    /**
+     * 发送默认消息
+     */
     @Override
-    public void sendMesDefault() throws InterruptedException, RemotingException, MQClientException, MQBrokerException {
+    public void sendMesDefault() throws Exception {
         String msg = "demo msg test";
         log.info("开始发送消息：" + msg);
         Message sendMsg = new Message("DemoTopic", "DemoTag", msg.getBytes());
@@ -35,33 +45,32 @@ public class MqProducerServiceImpl implements MqProducerService {
     }
 
     @Override
-    public void sendMes(String tag, String message) {
-        Message message1 = new Message(TOPIC, tag, message.getBytes());
-        try {
-            mqProducer.send(message1);
-        } catch (MQClientException e) {
-            e.printStackTrace();
-        } catch (RemotingException e) {
-            e.printStackTrace();
-        } catch (MQBrokerException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
     public void sendMesDemo() throws Exception {
         DefaultMQProducer producer = new DefaultMQProducer("please_rename_unique_group_name");
-        producer.setNamesrvAddr("192.168.186.128:9876");
+        producer.setNamesrvAddr(IP + ":9876");
         producer.start();
         for (int i = 0; i < 100; i++) {
-            Message msg = new Message(TOPIC,"TagA",
+            Message msg = new Message(TOPIC, "TagA",
                     ("Hello RocketMQ " + i).getBytes(RemotingHelper.DEFAULT_CHARSET)
             );
             SendResult sendResult = producer.send(msg);
             System.out.printf("%s%n", sendResult);
         }
         producer.shutdown();
+    }
+
+    /**
+     * 同步发送消息
+     *
+     * @throws Exception
+     */
+    @Override
+    public SendResult syncSendMq() throws Exception {
+        //构建消息
+        Message message = new Message(TOPIC, "Taga", ("syncSendMq "+count).getBytes());
+        //发送消息给broker
+        SendResult send = mqProducer.send(message);
+        log.info("sendResult info ={}",send.toString());
+        return  send;
     }
 }
