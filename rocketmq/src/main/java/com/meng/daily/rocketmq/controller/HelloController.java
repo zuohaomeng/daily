@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController()
 @RequestMapping("/hello")
-@Api(description = "hello测试")
+@Api("hello测试")
 @Slf4j
 public class HelloController {
 
