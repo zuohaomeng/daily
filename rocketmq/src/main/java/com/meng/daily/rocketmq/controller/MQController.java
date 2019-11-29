@@ -54,4 +54,24 @@ public class MQController {
         }
         return ResResult.error();
     }
+    @ApiOperation("发送异步消息")
+    @GetMapping("/asyncSendMq")
+    public ResResult asyncSendMq(){
+        try {
+            mqProducerService.asyncSendMq();
+        } catch (Exception e) {
+            log.error("asyncSendMq error",e);
+        }
+        return ResResult.success("消息发送了");
+    }
+    @ApiOperation("单向发送消息")
+    @GetMapping("/sendMqOneway")
+    public ResResult sendMqOneway(){
+        try {
+            mqProducerService.asyncSendMq();
+        } catch (Exception e) {
+            log.error("asyncSendMq error",e);
+        }
+        return ResResult.success("消息发送了");
+    }
 }

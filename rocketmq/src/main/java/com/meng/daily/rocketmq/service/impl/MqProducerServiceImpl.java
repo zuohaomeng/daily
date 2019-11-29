@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.exception.MQBrokerException;
 import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
+import org.apache.rocketmq.client.producer.SendCallback;
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.common.message.Message;
 import org.apache.rocketmq.remoting.common.RemotingHelper;
@@ -70,7 +71,43 @@ public class MqProducerServiceImpl implements MqProducerService {
         Message message = new Message(TOPIC, "Taga", ("syncSendMq "+count).getBytes());
         //发送消息给broker
         SendResult send = mqProducer.send(message);
+
         log.info("sendResult info ={}",send.toString());
         return  send;
     }
+    /**
+     * 发送异步消息
+     * 异步消息通常用在对响应时间敏感的业务场景，即发送端不能容忍长时间地等待Broker的响应。
+     */
+    @Override
+    public void asyncSendMq() throws Exception{
+        //构建消息
+        Message message = new Message(TOPIC, "Taga", ("asyncSendMq "+count).getBytes());
+        mqProducer.send(message, new SendCallback() {
+            //成功时的回调
+            @Override
+            public void onSuccess(SendResult sendResult) {
+                log.info("消息发送成功！count={}",count,sendResult.getMsgId());
+            }
+            //异常时候的回调
+            @Override
+            public void onException(Throwable throwable) {
+                log.error("消息发送失败！count={}",count,throwable);
+            }
+        });
+    }
+
+    /**
+     * 单向发送消息
+     * 这种方式主要用在不特别关心发送结果的场景，例如日志发送。
+     * @throws Exception
+     */
+    @Override
+    public void sendMqOneway() throws Exception {
+        Message message = new Message(TOPIC, "Taga", ("sendMqOneway "+count).getBytes());
+        //单向发送，没有任何返回
+        mqProducer.sendOneway(message);
+    }
+
+
 }

@@ -13,4 +13,6 @@ public interface MqProducerService {
      void sendMesDemo() throws Exception;
      void sendMesDefault() throws  Exception;
      SendResult syncSendMq() throws Exception;
+     void asyncSendMq() throws Exception;
+     void sendMqOneway() throws Exception;
 }
