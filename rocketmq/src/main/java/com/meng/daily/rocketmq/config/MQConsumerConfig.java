@@ -1,16 +1,24 @@
 package com.meng.daily.rocketmq.config;
 
+import com.meng.daily.rocketmq.constant.MQConstant;
 import com.meng.daily.rocketmq.service.consumer.MQConsumeMsgListenerProcessor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.rocketmq.client.consumer.DefaultMQPullConsumer;
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
+import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyContext;
+import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyStatus;
+import org.apache.rocketmq.client.consumer.listener.MessageListenerConcurrently;
 import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.common.consumer.ConsumeFromWhere;
+import org.apache.rocketmq.common.message.MessageExt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.List;
 
 /**
  * @author 梦醉
@@ -35,7 +43,31 @@ public class MQConsumerConfig {
     private MQConsumeMsgListenerProcessor mqMessageListenerProcessor;
 
     @Bean
-    public DefaultMQPushConsumer getRocketMQConsumer()  {
+    public DefaultMQPushConsumer getDefaultMQPushConsumer() throws MQClientException {
+        //建立消费者，并制定消费者组
+        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer(groupName + "default");
+        consumer.setNamesrvAddr(namesrvAddr);
+        consumer.setConsumeThreadMin(consumeThreadMin);
+        consumer.setConsumeThreadMax(consumeThreadMax);
+
+        //设置接受的Demo_tipic
+        consumer.subscribe(MQConstant.DEMO_TIPIC, "*");
+
+        //消费消息的方法
+        consumer.registerMessageListener(new MessageListenerConcurrently() {
+            @Override
+            public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> list, ConsumeConcurrentlyContext consumeConcurrentlyContext) {
+                log.info("{} Receive New Messages: {} {}", Thread.currentThread().getName(), list);
+                // 标记该消息已经被成功消费
+                return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
+            }
+        });
+        consumer.start();
+        return consumer;
+    }
+
+    @Bean("defaultConsumer")
+    public DefaultMQPushConsumer getRocketMQConsumer() {
 
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer(groupName);
         consumer.setNamesrvAddr(namesrvAddr);
@@ -63,12 +95,12 @@ public class MQConsumerConfig {
             String[] topicTagsArr = topics.split(";");
             for (String topicTags : topicTagsArr) {
                 String[] topicTag = topicTags.split("~");
-                consumer.subscribe(topicTag[0],topicTag[1]);
+                consumer.subscribe(topicTag[0], topicTag[1]);
             }
             consumer.start();
-            log.info("consumer is start !!! groupName:{},topics:{},namesrvAddr:{}",groupName,topics,namesrvAddr);
-        }catch (MQClientException e){
-            log.error("consumer is start !!! groupName:{},topics:{},namesrvAddr:{}",groupName,topics,namesrvAddr,e);
+            log.info("consumer is start !!! groupName:{},topics:{},namesrvAddr:{}", groupName, topics, namesrvAddr);
+        } catch (MQClientException e) {
+            log.error("consumer is start !!! groupName:{},topics:{},namesrvAddr:{}", groupName, topics, namesrvAddr, e);
         }
         return consumer;
     }
