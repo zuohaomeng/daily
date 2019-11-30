@@ -20,6 +20,12 @@ public class ResResult {
         resResult.setData(result);
         return resResult;
     }
+    public static ResResult success(){
+        ResResult resResult = new ResResult();
+        resResult.setCode(200);
+        resResult.setMessage("成功");
+        return resResult;
+    }
     public static ResResult error(){
         ResResult resResult = new ResResult();
         resResult.setCode(500);

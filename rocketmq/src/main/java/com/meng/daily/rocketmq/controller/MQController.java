@@ -2,6 +2,7 @@ package com.meng.daily.rocketmq.controller;
 
 import com.meng.daily.rocketmq.constant.ResResult;
 import com.meng.daily.rocketmq.service.MqProducerService;
+import com.meng.daily.rocketmq.service.OrderMqProducerService;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.producer.SendResult;
@@ -22,6 +23,8 @@ import javax.annotation.Resource;
 public class MQController {
     @Resource
     private MqProducerService mqProducerService;
+    @Resource
+    private OrderMqProducerService orderMqProducerService;
 
     @ApiOperation("构造生产者发送消息")
     @GetMapping("/send")
@@ -54,6 +57,7 @@ public class MQController {
         }
         return ResResult.error();
     }
+
     @ApiOperation("发送异步消息")
     @GetMapping("/asyncSendMq")
     public ResResult asyncSendMq(){
@@ -64,14 +68,26 @@ public class MQController {
         }
         return ResResult.success("消息发送了");
     }
+
     @ApiOperation("单向发送消息")
     @GetMapping("/sendMqOneway")
     public ResResult sendMqOneway(){
         try {
-            mqProducerService.asyncSendMq();
+            mqProducerService.sendMqOneway();
         } catch (Exception e) {
             log.error("asyncSendMq error",e);
         }
         return ResResult.success("消息发送了");
+    }
+
+    @GetMapping("/sendOrderMsg")
+    @ApiOperation("发送顺序消息")
+    public ResResult sendOrderMsg(){
+        try {
+            orderMqProducerService.send();
+        } catch (Exception e) {
+            log.error("sendOrderMsg error ",e);
+        }
+        return ResResult.success();
     }
 }

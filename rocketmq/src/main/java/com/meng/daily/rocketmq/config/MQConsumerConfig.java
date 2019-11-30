@@ -10,6 +10,7 @@ import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyStatus;
 import org.apache.rocketmq.client.consumer.listener.MessageListenerConcurrently;
 import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.common.consumer.ConsumeFromWhere;
+import org.apache.rocketmq.common.message.Message;
 import org.apache.rocketmq.common.message.MessageExt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +22,7 @@ import org.springframework.context.annotation.Configuration;
 import java.util.List;
 
 /**
+ * 建立了两个消费者
  * @author 梦醉
  * @date 2019/11/24--17:21
  */
@@ -57,7 +59,11 @@ public class MQConsumerConfig {
         consumer.registerMessageListener(new MessageListenerConcurrently() {
             @Override
             public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> list, ConsumeConcurrentlyContext consumeConcurrentlyContext) {
-                log.info("{} Receive New Messages: {} {}", Thread.currentThread().getName(), list);
+                for (int i = 0; i < list.size(); i++) {
+                    Message message = list.get(i);
+                    log.info("{} Receive New Messages: {} \nmessage=", Thread.currentThread().getName(), list,new String(message.getBody()));
+                }
+
                 // 标记该消息已经被成功消费
                 return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
             }
@@ -66,7 +72,7 @@ public class MQConsumerConfig {
         return consumer;
     }
 
-    @Bean("defaultConsumer")
+//    @Bean("defaultConsumer")
     public DefaultMQPushConsumer getRocketMQConsumer() {
 
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer(groupName);
