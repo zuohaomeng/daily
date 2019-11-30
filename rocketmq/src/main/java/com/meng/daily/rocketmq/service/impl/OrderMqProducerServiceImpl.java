@@ -36,12 +36,9 @@ public class OrderMqProducerServiceImpl implements OrderMqProducerService {
         //获取订单列表
         List<OrderStep> list = new OrderStep().buildOrders();
 
-        Date date = new Date();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String now = simpleDateFormat.format(date);
 
         for (int i = 0; i < list.size(); i++) {
-            String body = now+" hello OrderMessage " + list.get(i);
+            String body = "hello OrderMessage " + list.get(i);
             Message message =new Message(MQConstant.DEMO_TIPIC,tags[i%tags.length],"KEY"+i,body.getBytes());
             SendResult sendResult = producer.send(message, new MessageQueueSelector() {
                 @Override

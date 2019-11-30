@@ -41,7 +41,7 @@ public class MQConsumerConfig {
     @Autowired
     private MQConsumeMsgListenerProcessor mqMessageListenerProcessor;
 
-    @Bean
+//    @Bean
     public DefaultMQPushConsumer getDefaultMQPushConsumer() throws MQClientException {
         //建立消费者，并制定消费者组
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer(groupName + "default");
@@ -58,7 +58,7 @@ public class MQConsumerConfig {
             public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> list, ConsumeConcurrentlyContext consumeConcurrentlyContext) {
                 for (int i = 0; i < list.size(); i++) {
                     Message message = list.get(i);
-                    log.info("{} Receive New Messages: {} \nmessage=", Thread.currentThread().getName(), list,new String(message.getBody()));
+                    log.info("Receive New Messages: {} \nmessage={}", list.get(i),new String(message.getBody()));
                 }
 
                 // 标记该消息已经被成功消费
