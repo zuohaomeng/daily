@@ -29,7 +29,7 @@ public class MQConsumeMsgListenerProcessor implements MessageListenerConcurrentl
             return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
         }
         MessageExt messageExt = msgs.get(0);
-        log.info("接受到的消息为：" + messageExt.toString());
+        log.info("接受到的消息为：" + new String(messageExt.getBody()));
         if (messageExt.getTopic().equals("你的Topic")) {
             if (messageExt.getTags().equals("你的Tag")) {
                 // 判断该消息是否重复消费（RocketMQ不保证消息不重复，如果你的业务需要保证严格的不重复消息，需要你自己在业务端去重）

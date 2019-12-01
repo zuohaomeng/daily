@@ -112,5 +112,36 @@ public class MqProducerServiceImpl implements MqProducerService {
         mqProducer.sendOneway(message);
     }
 
+    /**
+     * 发送延时消息
+     * "1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h";
+     * @throws Exception
+     */
+    @Override
+    public void sendScheduledMsg() throws Exception {
+        for (int i = 0; i < 10; i++) {
+            Message message = new Message(TOPIC,"taga",("sendScheduledMsg "+i).getBytes());
+            log.info("发送延时消息");
+            //设置延时等级
+            message.setDelayTimeLevel(3);
+            SendResult send = mqProducer.send(message);
+        }
+    }
+
+    /**
+     * 发送了一堆数据
+     * 不超过4MB
+     * @throws Exception
+     */
+    @Override
+    public void sendBatchMsg() throws Exception {
+        Message message1 = new Message(TOPIC,"TagA","sendBatchMsg 1".getBytes("UTF-8"));
+        Message message3 = new Message(TOPIC,"TagA","sendBatchMsg 3".getBytes("UTF-8"));
+        Message message2 = new Message(TOPIC,"TagA","sendBatchMsg 2".getBytes("UTF-8"));
+        List<Message> messageList = new ArrayList<Message>();
+        mqProducer.send(messageList);
+        log.info("发送了一堆数据");
+    }
+
 
 }

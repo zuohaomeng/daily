@@ -69,7 +69,7 @@ public class MQConsumerConfig {
         return consumer;
     }
 
-//    @Bean("defaultConsumer")
+    @Bean("defaultConsumer")
     public DefaultMQPushConsumer getRocketMQConsumer() {
 
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer(groupName);

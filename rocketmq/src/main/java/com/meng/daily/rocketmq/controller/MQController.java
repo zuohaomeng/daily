@@ -90,4 +90,25 @@ public class MQController {
         }
         return ResResult.success();
     }
+    @GetMapping("/sendScheduledMsg")
+    @ApiOperation("/发送延时消息")
+    public ResResult sendScheduledMsg(){
+        try {
+            mqProducerService.sendScheduledMsg();
+        } catch (Exception e) {
+            log.error("sendScheduledMsg error",e);
+            return ResResult.error();
+        }
+        return ResResult.success();
+    }
+    @GetMapping("/sendBatchMsg")
+    @ApiOperation("发送批量消息")
+    public ResResult sendBatchMsg(){
+        try {
+            mqProducerService.sendBatchMsg();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return  ResResult.success();
+    }
 }

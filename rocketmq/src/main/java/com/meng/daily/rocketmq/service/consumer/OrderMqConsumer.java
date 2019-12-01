@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit;
  * @author 梦醉
  * @date 2019/12/1--0:41
  */
-@Component
+//@Component
 public class OrderMqConsumer implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
