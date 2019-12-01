@@ -3,9 +3,16 @@ package com.meng.daily.rocketmq.config;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
+import org.apache.rocketmq.client.producer.LocalTransactionState;
+import org.apache.rocketmq.client.producer.TransactionListener;
+import org.apache.rocketmq.client.producer.TransactionMQProducer;
+import org.apache.rocketmq.common.message.Message;
+import org.apache.rocketmq.common.message.MessageExt;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.concurrent.*;
 
 /**
  * @author 梦醉
@@ -13,7 +20,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Slf4j
 @Configuration
-public class MQProducerConfig {
+public class MQProducerRegistry {
     /**
      * 发送同一类消息的设置为同一个group，保证唯一,默认不需要设置，rocketmq会使用ip@pid(pid代表jvm名字)作为唯一标示
      */
@@ -37,8 +44,13 @@ public class MQProducerConfig {
     @Value("${rocketmq.producer.retryTimesWhenSendFailed}")
     private Integer retryTimesWhenSendFailed;
 
+    /**
+     * 默认发送者
+     * @return
+     * @throws MQClientException
+     */
     @Bean
-    public DefaultMQProducer getRocketMQProducer() throws MQClientException {
+    public DefaultMQProducer rocketMQProducer() throws MQClientException {
         DefaultMQProducer producer;
         producer = new DefaultMQProducer(this.groupName);
         producer.setNamesrvAddr(this.namesrvAddr);
@@ -65,4 +77,5 @@ public class MQProducerConfig {
 
         return producer;
     }
+
 }

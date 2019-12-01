@@ -139,6 +139,10 @@ public class MqProducerServiceImpl implements MqProducerService {
         Message message3 = new Message(TOPIC,"TagA","sendBatchMsg 3".getBytes("UTF-8"));
         Message message2 = new Message(TOPIC,"TagA","sendBatchMsg 2".getBytes("UTF-8"));
         List<Message> messageList = new ArrayList<Message>();
+        messageList.add(message1);
+        messageList.add(message2);
+        messageList.add(message3);
+
         mqProducer.send(messageList);
         log.info("发送了一堆数据");
     }

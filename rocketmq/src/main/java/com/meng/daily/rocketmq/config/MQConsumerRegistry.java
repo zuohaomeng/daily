@@ -25,7 +25,8 @@ import java.util.List;
  */
 @Slf4j
 @Configuration
-public class MQConsumerConfig {
+public class MQConsumerRegistry {
+
     @Value("${rocketmq.consumer.namesrvAddr}")
     private String namesrvAddr;
     @Value("${rocketmq.consumer.groupName}")
@@ -50,6 +51,10 @@ public class MQConsumerConfig {
         consumer.setConsumeThreadMax(consumeThreadMax);
 
         //设置接受的Demo_tipic
+        //可使用tag设置过滤消息
+        //如:TAGA || TAGB || TAGC
+        //或者使用sql过滤消息.或者使用sql
+        //https://github.com/apache/rocketmq/blob/master/docs/cn/RocketMQ_Example.md
         consumer.subscribe(MQConstant.DEMO_TIPIC, "*");
 
         //消费消息的方法
