@@ -16,9 +16,10 @@ import java.util.concurrent.*;
  * TransactionStatus.Unknown: 中间状态，它代表需要检查消息队列来确定状态。
  *
  *
- * 使用 TransactionMQProducer类创建生产者，并指定唯一的 ProducerGroup，
- * 就可以设置自定义线程池来处理这些检查请求。执行本地事务后、需要根据执行结果对消息队列进行回复。
+ * 使用 TransactionMQProducer类创建生产者，并指定唯一的 ProducerGroup，就可以设置自定义线程池来处理这些检查请求。
+ * 执行本地事务后、需要根据执行结果对消息队列进行回复。
  * 回传的事务状态在请参考前一节。
+ *
  * @author 梦醉
  * @date 2019/12/1--14:13
  */
@@ -27,6 +28,7 @@ public class TransactionProducerRegistry {
 
     @Bean
     public TransactionMQProducer transactionMQProducer(){
+
         TransactionListener listener = new TransactionListenerImpl();
         TransactionMQProducer producer = new TransactionMQProducer("transactionMQProducer");
         ExecutorService executorService = new ThreadPoolExecutor(2, 5, 100, TimeUnit.SECONDS,
@@ -44,7 +46,3 @@ public class TransactionProducerRegistry {
         return producer;
     }
 }
-/**
-
-
- */
