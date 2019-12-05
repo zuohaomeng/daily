@@ -11,9 +11,7 @@ import java.util.List;
  */
 public class ArraysDemo {
     public static void main(String[] args) {
-        Integer a1 = 22;
-        Integer b1 = 22;
-        System.out.println(a1==b1);
+
         //正确的写法
         Arrays.asList("a", "b", "c").forEach(a -> System.out.println(a));
 
@@ -27,6 +25,7 @@ public class ArraysDemo {
         Arrays.asList(list).forEach(a -> System.out.println(a));
 
         sort();
+
     }
 
     public static List<Integer> create() {
