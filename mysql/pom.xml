@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.meng.daily</groupId>
-    <artifactId>rocketmq</artifactId>
+    <artifactId>mysql</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>rocketmq</name>
+    <name>mysql</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -25,17 +25,13 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
-        <!--rocketmq-->
-        <dependency>
-            <groupId>org.apache.rocketmq</groupId>
-            <artifactId>rocketmq-client</artifactId>
-            <version>4.3.0</version>
-        </dependency>
+
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
@@ -63,7 +59,6 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
     </dependencies>
 
     <build>
