@@ -45,9 +45,6 @@
 
     <dependencies>
 
-
-
-
         <dependency>
             <groupId>com.meng.daily</groupId>
             <artifactId>dubbo-interface</artifactId>
@@ -110,12 +107,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.62</version>
-        </dependency>
+
 
     </dependencies>
 
