@@ -67,3 +67,15 @@ mybatis-plus:
   type-aliases-package: com.meng.daily.mysql.entity
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: false
+
+#
+logging:
+  level:
+    com.meng.daily.mysql.mapper: debug
+
+
+# pageHelper
+pagehelper:
+  helperDialect: mysql
+
