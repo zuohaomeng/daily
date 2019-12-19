@@ -1,6 +1,10 @@
 package com.meng.daily.mysql.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.meng.daily.mysql.entity.UserDo;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * @Description: TODO
@@ -19,7 +23,7 @@ public interface UserService {
      * @param userId
      * @return
      */
-    UserDo getUserByUserId(Integer userId);
+    UserDo getUserByUserId(@Param("userId") Integer userId);
 
     /**
      * 删除
@@ -30,4 +34,16 @@ public interface UserService {
      * 修改
      */
     int update(Integer userId);
+
+    /**
+     * 当前页和每页大小
+     * @param current
+     * @param size
+     * @return
+     */
+    Page<UserDo> getLists(int current,int size);
+    /**
+     * count
+     */
+    int count();
 }

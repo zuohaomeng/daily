@@ -1,6 +1,7 @@
 package com.meng.daily.mysql.service.impl;
 
-import com.baomidou.mybatisplus.extension.api.R;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.meng.daily.mysql.entity.UserDo;
 import com.meng.daily.mysql.mapper.UserMapper;
 import com.meng.daily.mysql.service.UserService;
@@ -50,5 +51,18 @@ public class UserServiceImpl implements UserService {
         userDo.setUpdateTime(new Date());
         int i = userMapper.updateById(userDo);
         return i;
+    }
+
+    @Override
+    public Page<UserDo> getLists(int current,int size) {
+        Page<UserDo> page = new Page();
+
+        Page<UserDo> userDoPage = userMapper.selectPage(page, Wrappers.emptyWrapper());
+        return userDoPage;
+    }
+
+    @Override
+    public int count() {
+        return userMapper.count();
     }
 }
