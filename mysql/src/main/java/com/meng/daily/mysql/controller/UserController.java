@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @Description: TODO
@@ -57,5 +58,14 @@ public class UserController {
     @GetMapping("/count")
     public Integer count() {
         return userService.count();
+    }
+
+    @GetMapping("/selectBysex")
+    public List<UserDo> selectBysex(){
+        return userService.selectBysex();
+    }
+    @GetMapping("/getAll")
+    public List<UserDo> getAll(){
+        return userService.getAll();
     }
 }

@@ -46,4 +46,14 @@ public interface UserService {
      * count
      */
     int count();
+    /**
+     *
+     */
+    List<UserDo> selectBysex();
+
+    /**
+     * 获取所有
+     * @return
+     */
+    List<UserDo> getAll();
 }
