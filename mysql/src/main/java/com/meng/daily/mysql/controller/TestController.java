@@ -16,7 +16,7 @@ import java.util.Random;
  * @Date: 2019/12/20 12:47
  */
 @RestController
-@RequestMapping("test")
+@RequestMapping("/test")
 public class TestController {
     Random random = new Random();
     @GetMapping("one")
