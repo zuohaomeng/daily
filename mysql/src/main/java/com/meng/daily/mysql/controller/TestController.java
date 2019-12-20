@@ -21,7 +21,7 @@ public class TestController {
     Random random = new Random();
     @GetMapping("one")
     public ResponseModel one(){
-        UserDo user1 = UserDo.builder().email(random.nextInt(1000000)+"@qq.com").name("王三").sex(1).build();
+        UserDo user1 = UserDo.builder().email(random.nextInt(10000)+"@mail.com").name("李四").sex(1).build();
         return ResponseModel.SUCCESS(user1);
     }
     @GetMapping("list")
