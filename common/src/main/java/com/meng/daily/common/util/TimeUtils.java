@@ -3,6 +3,7 @@ package com.meng.daily.common.util;
 
 import org.apache.commons.lang3.time.DateUtils;
 
+import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -40,5 +41,11 @@ public class TimeUtils {
     public static void main(String[] args) {
         Date date = new Date();
         getDaysOfYears(date);
+        try {
+            Date date1 = DateUtils.parseDate("2017-09-22", "yyyy-MM-dd");
+            System.out.println("date1"+date1);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 }
