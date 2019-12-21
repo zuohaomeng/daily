@@ -29,6 +29,7 @@ public class TxServiceImpl implements TxService {
         UserDo user4 = UserDo.builder().email(random.nextInt(10000000)+"@qq.com").name("王三").sex(1).build();
         UserDo user5 = UserDo.builder().email(random.nextInt(10000000)+"@qq.com").name("王三").sex(1).build();
         UserDo user6 = UserDo.builder().email(random.nextInt(10000000)+"@qq.com").name("王三").sex(1).build();
+
         userMapper.insert(user1);
         userMapper.insert(user2);
         userMapper.insert(user3);

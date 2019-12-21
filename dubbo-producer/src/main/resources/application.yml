@@ -1,0 +1,5 @@
+dubbo:
+  metadata-report:
+    address: zookeeper://47.98.133.16:10001
+  registry:
+    address: zookeeper://47.98.133.16:10001
