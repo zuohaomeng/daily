@@ -2,6 +2,7 @@ package com.meng.daily.mysql.controller;
 
 import com.meng.daily.mysql.service.TxService;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,7 +18,7 @@ import javax.annotation.Resource;
 public class TxController {
     @Resource
     private TxService txService;
-    @RequestMapping("/insertTx")
+    @GetMapping("/insertTx")
     @ApiOperation("插入多条数据事物")
     public Object insertTx(int error){
         txService.insertTx(error);

@@ -1,17 +1,16 @@
 package com.meng.daily.mysql.service.impl;
 
-import com.baomidou.mybatisplus.extension.api.R;
 import com.meng.daily.mysql.entity.UserDo;
 import com.meng.daily.mysql.mapper.UserMapper;
 import com.meng.daily.mysql.service.TxService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.beans.Transient;
 import java.util.Random;
 
 /**
- * @Description: TODO
+ * @Description: TODO   使用事务
  * @Author: Hao.Zuo
  * @Date: 2019/12/20 11:27
  */
@@ -19,8 +18,10 @@ import java.util.Random;
 public class TxServiceImpl implements TxService {
     @Resource
     private UserMapper userMapper;
+
+
     @Override
-    @Transient
+    @Transactional
     public Object insertTx(int error) {
         Random random = new Random();
         UserDo user1 = UserDo.builder().email(random.nextInt(1000000)+"@qq.com").name("王三").sex(1).build();

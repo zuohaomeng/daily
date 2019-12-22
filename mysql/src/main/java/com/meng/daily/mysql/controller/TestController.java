@@ -22,6 +22,7 @@ public class TestController {
     @GetMapping("one")
     public ResponseModel one(){
         UserDo user1 = UserDo.builder().name("李四").sex(1).build();
+        System.out.println("添加2一2个1");
         return ResponseModel.SUCCESS(user1);
     }
     @GetMapping("list")
