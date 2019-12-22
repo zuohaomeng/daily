@@ -17,9 +17,6 @@ public class MyClassLoader extends ClassLoader {
     public MyClassLoader(String path) {
         this.path= path;
     }
-
-
-
     /**
      * 重写findClass方法
      * @param name 是我们这个类的全路径
@@ -28,10 +25,9 @@ public class MyClassLoader extends ClassLoader {
      */
     @Override
     protected Class<?> findClass(String name) throws ClassNotFoundException {
-        System.out.println("MyClassLoader findClass------");
         Class clazz = null;
         Class c = findLoadedClass(name);
-        System.out.println(c==null);
+        System.out.println("当前类是否被加载:"+((c==null)?"没有":"加载"));
         // 获取该class文件字节码数组
         byte[] classData = getData();
 
