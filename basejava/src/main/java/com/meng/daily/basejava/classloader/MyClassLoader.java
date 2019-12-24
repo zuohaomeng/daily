@@ -15,10 +15,12 @@ public class MyClassLoader extends ClassLoader {
     private String path;
 
     public MyClassLoader(String path) {
-        this.path= path;
+        this.path = path;
     }
+
     /**
      * 重写findClass方法
+     *
      * @param name 是我们这个类的全路径
      * @return
      * @throws ClassNotFoundException
@@ -27,27 +29,25 @@ public class MyClassLoader extends ClassLoader {
     protected Class<?> findClass(String name) throws ClassNotFoundException {
         Class clazz = null;
         Class c = findLoadedClass(name);
-        System.out.println("当前类是否被加载:"+((c==null)?"没有":"加载"));
+        System.out.println("当前类是否被加载:" + ((c == null) ? "没有" : "加载"));
         // 获取该class文件字节码数组
         byte[] classData = getData();
 
-        if (classData != null) {
-            // 将class的字节码数组转换成Class类的实例
-            clazz = defineClass(name, classData, 0, classData.length);
-        }
+        // 将class的字节码数组转换成Class类的实例
+        clazz = defineClass(name, classData, 0, classData.length);
         return clazz;
     }
 
 
-
     /**
      * 将class文件转化为字节码数组
+     *
      * @return
      */
     private byte[] getData() {
 
         File file = new File(path);
-        if (file.exists()){
+        if (file.exists()) {
             FileInputStream in = null;
             ByteArrayOutputStream out = null;
             try {
@@ -71,7 +71,7 @@ public class MyClassLoader extends ClassLoader {
                 }
             }
             return out.toByteArray();
-        }else{
+        } else {
             return null;
         }
 

@@ -8,6 +8,6 @@ package com.meng.daily.basejava.classloader;
 public class User {
     private String name;
     public void hello(){
-        System.out.println("hello");
+        System.out.println("hello3");
     }
 }
