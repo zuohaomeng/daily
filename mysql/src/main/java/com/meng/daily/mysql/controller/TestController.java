@@ -22,7 +22,7 @@ public class TestController {
     @GetMapping("one")
     public ResponseModel one(){
         System.out.println(this.getClass().getClassLoader());
-        System.out.println("添加1+11");
+        System.out.println("添1+11");
         return ResponseModel.SUCCESS();
     }
     @GetMapping("two")

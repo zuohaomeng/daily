@@ -17,7 +17,9 @@ public class MyClassLoader extends ClassLoader {
     public MyClassLoader(String path) {
         this.path = path;
     }
+    public MyClassLoader(){
 
+    }
     /**
      * 重写findClass方法
      *
