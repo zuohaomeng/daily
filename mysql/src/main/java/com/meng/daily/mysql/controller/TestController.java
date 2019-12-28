@@ -21,8 +21,15 @@ public class TestController {
     Random random = new Random();
     @GetMapping("one")
     public ResponseModel one(){
+        System.out.println(this.getClass().getClassLoader());
+        System.out.println("添1+11");
+        return ResponseModel.SUCCESS();
+    }
+    @GetMapping("two")
+    public ResponseModel two(){
+        System.out.println(this.getClass().getClassLoader());
         UserDo user1 = UserDo.builder().name("李四").sex(1).build();
-        System.out.println("添加2一2个1");
+        System.out.println("添加1+11");
         return ResponseModel.SUCCESS(user1);
     }
     @GetMapping("list")
