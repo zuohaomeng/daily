@@ -21,8 +21,6 @@ public class Main {
         System.out.println(path);
         newClass(path);
         newClass(path);
-//        hotswapClass(path);
-//        hotswapClass(path);
         return;
 
 
@@ -37,12 +35,7 @@ public class Main {
 
         //利用反射获取main方法
         Method method = Userzz.getDeclaredMethod("hello");
-        Object object = (User)Userzz.newInstance();
+        Object object = Userzz.newInstance();
         method.invoke(object);
-    }
-    private static void hotswapClass(String path){
-        User user = new User();
-        user.hello();
-        System.out.println(user.getClass().getClassLoader());
     }
 }
