@@ -11,7 +11,7 @@
     <groupId>com.meng.daily</groupId>
     <artifactId>spb</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>spb</name>
+    <name>daily</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
