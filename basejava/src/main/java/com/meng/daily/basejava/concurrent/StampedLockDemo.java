@@ -1,5 +1,7 @@
 package com.meng.daily.basejava.concurrent;
 
+import sun.rmi.runtime.Log;
+
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.StampedLock;
 
@@ -9,21 +11,43 @@ import java.util.concurrent.locks.StampedLock;
  */
 public class StampedLockDemo {
     private StampedLock lock = new StampedLock();
+
+    public void optimisticGet() throws InterruptedException {
+        long stamp = lock.tryOptimisticRead();
+        try {
+            System.out.println("[optimisticGet]  全力运行中。。。。");
+            TimeUnit.SECONDS.sleep(1);
+            if (!lock.validate(stamp)) {
+                long l = lock.readLock();
+                try {
+
+                } finally {
+                    lock.unlockRead(l);
+                }
+            }
+        } finally {
+            lock.unlock(stamp);
+        }
+    }
+
     public void get() throws Exception {
+        //悲观读
         long stamp = lock.readLock();
         try {
             System.out.println("[get]  全力运行中。。。。");
             TimeUnit.SECONDS.sleep(1);
-        }finally {
+        } finally {
             lock.unlockRead(stamp);
         }
     }
-    public void set() throws Exception{
+
+    public void set() throws Exception {
+        //写锁
         long stamp = lock.writeLock();
-        try{
+        try {
             System.out.println("[set]  全力运行中。。。。");
             TimeUnit.SECONDS.sleep(1);
-        }finally {
+        } finally {
             lock.unlockWrite(stamp);
         }
     }
