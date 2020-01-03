@@ -29,10 +29,5 @@ class TbPermissionServiceImplTest {
         });
         System.out.println();
     }
-    @Test
-    void selectById(){
-        TbPermission tbPermission = tbPermissionService.selectById(37);
-        System.out.println(tbPermission.toString());
 
-    }
 }

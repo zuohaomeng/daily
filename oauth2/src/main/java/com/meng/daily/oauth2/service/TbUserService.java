@@ -9,4 +9,5 @@ import com.meng.daily.oauth2.entity.TbUser;
  */
 public interface TbUserService {
     TbUser getByUsername(String username);
+    TbUser getuserbyID();
 }
