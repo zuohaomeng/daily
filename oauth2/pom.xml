@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.meng.daily</groupId>
-    <artifactId>mysql</artifactId>
+    <artifactId>oauth2</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>mysql</name>
+    <name>oauth2</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -26,6 +26,17 @@
         </dependency>
 
 
+        <!-- springboot2.0已经将oauth2.0与security整合在一起 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <!-- 由于一些注解和API从spring security5.0中移除，所以需要导入下面的依赖包  -->
+        <dependency>
+            <groupId>org.springframework.security.oauth.boot</groupId>
+            <artifactId>spring-security-oauth2-autoconfigure</artifactId>
+            <version>2.0.0.RELEASE</version>
+        </dependency>
 
         <!-- mybatis-->
         <dependency>
@@ -45,16 +56,12 @@
             <version>1.1.16</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.ctrip.framework.apollo</groupId>
-            <artifactId>apollo-client</artifactId>
-            <version>1.1.0</version>
-        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
