@@ -1,5 +1,6 @@
 package com.meng.daily.mysql.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
@@ -76,11 +77,16 @@ public class UserServiceImpl implements UserService {
         List<UserDo> userDos = userMapper.selectList(sex);
         return userDos;
     }
-
+    @Override
     public List<UserDo> getAll(){
         QueryWrapper<UserDo> wrapper = new QueryWrapper<>();
         wrapper.eq("sex",1);
         List<UserDo> all = userMapper.getAll(wrapper);
         return all;
+    }
+
+    @Override
+    public UserDo selectOneBySex(int sex) {
+        return userMapper.selectOne(new LambdaQueryWrapper<UserDo>().eq(UserDo::getSex,sex).last("limit 1"));
     }
 }

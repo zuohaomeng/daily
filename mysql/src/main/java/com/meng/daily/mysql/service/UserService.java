@@ -56,4 +56,11 @@ public interface UserService {
      * @return
      */
     List<UserDo> getAll();
+
+    /**
+     * 查询一个根据性别
+     * @param sex
+     * @return
+     */
+    UserDo selectOneBySex(int sex);
 }

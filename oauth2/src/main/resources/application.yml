@@ -67,7 +67,7 @@ mybatis-plus:
   type-aliases-package: com.meng.daily.oauth2.entity
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-    map-underscore-to-camel-case: false
+    map-underscore-to-camel-case: true
 
 
 logging:
