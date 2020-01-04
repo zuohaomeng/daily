@@ -27,7 +27,6 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     @Resource
     private DataSource dataSource;
 
-
     @Bean
     public TokenStore tokenStore() {
         // 基于 JDBC 实现，令牌保存到数据
