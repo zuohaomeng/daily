@@ -2,6 +2,20 @@ virtual:
   ip: 47.98.133.16
 server:
   port: 8904
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 spring:
   application:
     name: daily-mysql
