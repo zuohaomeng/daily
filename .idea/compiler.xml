@@ -7,16 +7,16 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="basejava" />
-        <module name="netty" />
         <module name="common" />
+        <module name="daily" />
         <module name="dubbo-consumer" />
-        <module name="mysql" />
         <module name="dubbo-interface" />
         <module name="dubbo-producer" />
+        <module name="mysql" />
+        <module name="netty" />
+        <module name="oauth2" />
         <module name="oauth2-resource" />
         <module name="rocketmq" />
-        <module name="daily" />
-        <module name="oauth2" />
       </profile>
     </annotationProcessing>
   </component>

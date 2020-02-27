@@ -21,6 +21,13 @@
     <dependencies>
 
         <dependency>
+            <groupId>net.logstash.logback</groupId>
+            <artifactId>logstash-logback-encoder</artifactId>
+            <version>6.3</version>
+        </dependency>
+
+
+        <dependency>
             <groupId>com.meng.daily</groupId>
             <artifactId>common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
