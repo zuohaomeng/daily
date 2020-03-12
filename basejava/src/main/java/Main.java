@@ -1,49 +1,40 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        ArrayList list = new ArrayList();
-        while (sc.hasNextInt()) {
-            int t = sc.nextInt();
-            list.add(t);
-        }
-        quickSort(list,0,list.size()-1);
-        for (int i = 0; i < list.size(); i++) {
-            System.out.print((int)list.get(i)+" ");
-        }
-    }
-    public static void quickSort(ArrayList list,int left,int right){
-        if(left>=right){
+        int n = sc.nextInt();
+        sc.nextLine();
+        String s1 = sc.nextLine();
+        String s2 = sc.nextLine();
+        if(n == 1){
+            System.out.println(-1);
             return;
         }
-        int mid = sort(list,left,right);
-        quickSort(list,left,mid-1);
-        quickSort(list, mid+1, right);
-    }
-
-    private static int sort(ArrayList list, int left, int right) {
-        int i = left;
-        int j = right+1;
-        int k = (int) list.get(left);
-        while (true){
-            while ((int)list.get(++i)<=k){
-                if (i==right) break;
+        int[][] num = new int[2 + 1][n + 1];
+        num[1][1] = 1;
+        num[1][2] = 0;
+        for (int i = 2; i <= n; i++) {
+            if (s1.charAt(i - 1) == '.') {
+                num[1][i] = num[1][i - 1] + num[2][i - 1];
+            } else {
+                num[1][i] = 0;
             }
-            while ((int)list.get(--j)>k){
-                if(j==left) break;
+            if (s2.charAt(i - 1) == '.') {
+                num[2][i] = num[2][i - 1] + num[1][i - 1];
+            } else {
+                num[2][i] = 0;
             }
-            if(i>=j) break;
-            exch(list,i,j);
+            if (num[1][i] == 0 && num[2][i] == 0) {
+                System.out.println(-1);
+                return;
+            }
         }
-        exch(list, left, j);
-        return j;
+        System.out.println(num[2][n]);
     }
-    public static void exch(ArrayList list, int a, int b){
-        int t = (int) list.get(a);
-        list.set(a, (int)list.get(b));
-        list.set(b,t);
-    }
-
 }
+/*
+1
+.
+.
+ */
