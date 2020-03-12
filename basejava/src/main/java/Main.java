@@ -11,7 +11,7 @@ public class Main {
             System.out.println(-1);
             return;
         }
-        int[][] num = new int[2 + 1][n + 1];
+
         num[1][1] = 1;
         num[1][2] = 0;
         for (int i = 2; i <= n; i++) {
