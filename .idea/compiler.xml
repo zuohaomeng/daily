@@ -15,13 +15,13 @@
         <module name="oauth2" />
         <module name="oauth2-resource" />
         <module name="rocketmq" />
-        <module name="smallspring" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="dubbo-consumer" target="1.8" />
       <module name="dubbo-interface" target="1.8" />
       <module name="dubbo-producer" target="1.8" />
+      <module name="smallspring" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
