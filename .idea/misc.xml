@@ -7,14 +7,12 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/rocketmq/pom.xml" />
         <option value="$PROJECT_DIR$/basejava/pom.xml" />
-        <option value="$PROJECT_DIR$/dubbo-interface/pom.xml" />
-        <option value="$PROJECT_DIR$/dubbo-producer/pom.xml" />
-        <option value="$PROJECT_DIR$/dubbo-consumer/pom.xml" />
         <option value="$PROJECT_DIR$/mysql/pom.xml" />
         <option value="$PROJECT_DIR$/common/pom.xml" />
         <option value="$PROJECT_DIR$/netty/pom.xml" />
         <option value="$PROJECT_DIR$/oauth2/pom.xml" />
         <option value="$PROJECT_DIR$/oauth2-resource/pom.xml" />
+        <option value="$PROJECT_DIR$/smallspring/pom.xml" />
       </list>
     </option>
   </component>

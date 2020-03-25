@@ -1,5 +1,6 @@
 package com.meng.daily.basejava.java8.time;
 
+import java.io.Serializable;
 import java.time.Clock;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -11,7 +12,7 @@ import java.util.concurrent.TimeUnit;
  * @Author: Hao.Zuo
  * @Date: 2019/12/5 14:02
  */
-public class Demo {
+public class Demo implements Serializable {
     public static void main(String[] args) throws InterruptedException {
         Clock clock = Clock.systemUTC();
         System.out.println(clock.instant());
