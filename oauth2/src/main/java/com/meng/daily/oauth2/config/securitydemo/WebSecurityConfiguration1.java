@@ -13,10 +13,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
  * @Author: Hao.Zuo
  * @Date: 2020/1/4 16:02
  */
-//@Configuration
-//@EnableWebSecurity
-////全局方法拦截
-//@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
+@Configuration
+@EnableWebSecurity
+//全局方法拦截
+@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 public class WebSecurityConfiguration1 extends WebSecurityConfigurerAdapter {
 
     //必须使用加密

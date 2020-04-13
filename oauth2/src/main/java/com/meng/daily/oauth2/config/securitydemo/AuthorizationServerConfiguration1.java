@@ -13,9 +13,9 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
  * @Author: Hao.Zuo
  * @Date: 2020/1/4 15:53
  */
-//@Configuration
-////代表认证服务器
-//@EnableAuthorizationServer
+@Configuration
+//代表认证服务器
+@EnableAuthorizationServer
 public class AuthorizationServerConfiguration1 extends AuthorizationServerConfigurerAdapter {
 
     @Autowired
