@@ -1,5 +1,8 @@
 package com.meng.daily.oauth2.config.securitydemo;
 
+import com.meng.daily.oauth2.authentication.SecurityAuthenticationFailureHandler;
+import com.meng.daily.oauth2.authentication.SecurityAuthenticationSuccessHandler;
+import com.meng.daily.oauth2.filter.VerificationCodeFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -8,6 +11,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
  * @Description: TODO    服务器安全配置
@@ -47,13 +51,15 @@ public class WebSecurityConfiguration1 extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()//通过authorizeRequests()定义哪些URL需要被保护、哪些不需要被保护。
                 .anyRequest().authenticated()//所有请求必须登陆后访问
-                .and()
-                .formLogin()
+                .and().formLogin()
+                .failureHandler(new SecurityAuthenticationFailureHandler())//失败跳转逻辑
+                .successHandler(new SecurityAuthenticationSuccessHandler())//成功跳转逻辑
                 .loginPage("/mylogin.html")
                 //指定处理登录的请求路径
                 .loginProcessingUrl("/login")
                 .permitAll();
 
-
+        // 将过滤器添加在UsernamePasswordAuthenticationFilter之前
+        http.addFilterBefore(new VerificationCodeFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 }
