@@ -38,6 +38,6 @@ public class AuthorizationServerConfiguration1 extends AuthorizationServerConfig
                 // 授权范围
                 .scopes("app")
                 // 注册回调地址
-                .redirectUris("http://www.funtl.com");
+                .redirectUris("https://www.funtl.com/");
     }
 }

@@ -53,5 +53,6 @@ public class OrderMqConsumer implements ApplicationRunner {
         consumer.start();
         countDownLatch.await();
         System.out.println("end consumer");
+
     }
 }

@@ -28,6 +28,7 @@ public class EchoClient {
         new EchoClient("127.0.0.1", 9005).start();
     }
     public void start() throws Exception{
+        //用于处理客户端连接和socketchannel的网络读写
         EventLoopGroup group = new NioEventLoopGroup();
         try {
             Bootstrap b = new Bootstrap();

@@ -10,6 +10,7 @@ import io.netty.util.CharsetUtil;
  * @author 梦醉  客户端逻辑处理
  * @date 2019/12/28--22:21
  */
+//网络事件的读写
 //使用SimpleChannelInboundHandler处理所有必须的任务
 public class EchoClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
 
@@ -17,7 +18,9 @@ public class EchoClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         //当被通知Channel是活跃的时候，发送一条消息
-        ctx.writeAndFlush(Unpooled.copiedBuffer("Netty rocks，too", CharsetUtil.UTF_8));
+        for (int i = 0; i < 100; i++) {
+            ctx.writeAndFlush(Unpooled.copiedBuffer("Netty rocks，too+"+i, CharsetUtil.UTF_8));
+        }
 
     }
 

@@ -32,8 +32,8 @@ public class EchoServer {
     public void start() throws Exception {
         final EchoServerHandler serverHandler = new EchoServerHandler();
         //变成OIO只需要修改两个地方：
-        EventLoopGroup group = new OioEventLoopGroup();
-//        EventLoopGroup group = new NioEventLoopGroup();
+//        EventLoopGroup group = new OioEventLoopGroup();
+        EventLoopGroup group = new NioEventLoopGroup();
 
         try {
             ServerBootstrap b = new ServerBootstrap();
@@ -43,7 +43,10 @@ public class EchoServer {
                     .channel(NioServerSocketChannel.class)
                     .localAddress(new InetSocketAddress(port))
                     //添加一个EchoServerHandler到子Channel的ChannelPipeline
+                    //每次channel被注册到channelpipeline是，调用这个方法
                     .childHandler(new ChannelInitializer<SocketChannel>() {
+
+                        //初始化每一个channel
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
                             //因为EchoServerHandler被标注未@Shareable,所以我们可以总是使用同样的实例

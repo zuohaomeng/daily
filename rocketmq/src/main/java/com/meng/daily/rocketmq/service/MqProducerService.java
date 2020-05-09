@@ -7,11 +7,17 @@ import org.apache.rocketmq.client.producer.SendResult;
  * @date 2019/11/24--17:05
  */
 public interface MqProducerService {
-     void sendMesDemo() throws Exception;
-     void sendMesDefault() throws  Exception;
-     SendResult syncSendMq() throws Exception;
-     void asyncSendMq() throws Exception;
-     void sendMqOneway() throws Exception;
-     void sendScheduledMsg()  throws Exception;
-     void sendBatchMsg() throws Exception;
+    void sendMesDemo() throws Exception;
+
+    void sendMesDefault() throws Exception;
+
+    SendResult syncSendMq() throws Exception;
+
+    void asyncSendMq() throws Exception;
+
+    void sendMqOneway() throws Exception;
+
+    void sendScheduledMsg() throws Exception;
+
+    void sendBatchMsg() throws Exception;
 }
