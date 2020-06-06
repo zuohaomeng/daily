@@ -14,9 +14,10 @@ public class CompletionServiceDemo {
         completionService.submit(CompletionServiceDemo::call);
         completionService.submit(CompletionServiceDemo::call);
         for (int i = 0; i < 3; i++) {
-            System.out.println("返回值"+completionService.take().get());
+            System.out.println("返回值" + completionService.take().get());
         }
     }
+
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         select();
         CountDownLatch countDownLatch = new CountDownLatch(1);

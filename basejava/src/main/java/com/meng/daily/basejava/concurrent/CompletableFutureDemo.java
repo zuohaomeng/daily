@@ -13,7 +13,7 @@ public class CompletableFutureDemo {
         CompletableFuture<Void> future = CompletableFuture.runAsync(() -> {
             System.out.println("运行了1");
         }, Executors.newFixedThreadPool(3));
-        System.out.println("future:"+future.toString());
+        System.out.println("future:" + future.toString());
         future.thenRunAsync(() -> {
             System.out.println("then");
             try {

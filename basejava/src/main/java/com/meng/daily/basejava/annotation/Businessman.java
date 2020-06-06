@@ -1,6 +1,5 @@
 package com.meng.daily.basejava.annotation;
 
-import javax.naming.Name;
 
 /**
  * @author HAO.ZUO

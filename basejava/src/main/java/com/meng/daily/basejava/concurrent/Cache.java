@@ -23,6 +23,7 @@ public class Cache {
             map.put(i, i);
         }
     }
+
     //锁升级
     int get(int k) {
         w.lock();
