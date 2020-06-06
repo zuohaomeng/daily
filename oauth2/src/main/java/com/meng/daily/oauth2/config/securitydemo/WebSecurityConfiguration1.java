@@ -48,8 +48,7 @@ public class WebSecurityConfiguration1 extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/api/admin/**").hasRole("ADMIN")
                 .antMatchers("/api/user/**").hasRole("USER")
-                .and()
-                .authorizeRequests()//通过authorizeRequests()定义哪些URL需要被保护、哪些不需要被保护。
+                .antMatchers("/app/api/**", "/captcha.jpg").permitAll()
                 .anyRequest().authenticated()//所有请求必须登陆后访问
                 .and().formLogin()
                 .failureHandler(new SecurityAuthenticationFailureHandler())//失败跳转逻辑

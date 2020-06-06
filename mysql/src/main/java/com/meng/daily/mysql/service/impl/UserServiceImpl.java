@@ -53,7 +53,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public int update(Integer userId) {
         UserDo userDo = userMapper.selectById(userId);
-        userDo.setUpdateTime(new Date());
         int i = userMapper.updateById(userDo);
         return i;
     }

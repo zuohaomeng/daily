@@ -1,13 +1,11 @@
 package com.meng.daily.mysql.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.meng.daily.common.test.User;
 import com.meng.daily.mysql.entity.UserDo;
 import com.meng.daily.mysql.service.UserService;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -22,6 +20,12 @@ import java.util.List;
 public class UserController {
     @Resource
     private UserService userService;
+
+    @PostMapping
+    public UserDo create(@RequestBody UserDo user){
+        System.out.println(user.toString());
+        return user;
+    }
 
     @GetMapping("/insert")
     @ApiOperation("添加会员")

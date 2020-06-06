@@ -32,8 +32,4 @@ public class UserDo implements Serializable {
     private String name;
     private String email;
     private Integer sex;
-    private Date updateTime;
-    private int first;
-    private int second;
-    private int thrid;
 }

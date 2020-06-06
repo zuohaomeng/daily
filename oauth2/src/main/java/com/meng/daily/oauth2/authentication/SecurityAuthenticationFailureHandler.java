@@ -13,14 +13,15 @@ public class SecurityAuthenticationFailureHandler extends ExceptionMappingAuthen
 
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException e) throws IOException, ServletException {
-        if (request.getHeader("accept").contains("application/json")) {
+        System.out.println(request.getHeader("accept")+"31232");
+//        if (request.getHeader("accept").contains("application/json")) {
             response.setContentType("application/json;charset=UTF-8");
             response.setStatus(401);
             PrintWriter out = response.getWriter();
             // 输出失败的原因
             out.write("{\"error_code\":\"401\", \"name\":\"" + e.getClass() + "\", \"message\":\"" + e.getMessage() + "\"}");
-        } else {
-            super.onAuthenticationFailure(request, response, e);
-        }
+//        } else {
+//            super.onAuthenticationFailure(request, response, e);
+//        }
     }
 }

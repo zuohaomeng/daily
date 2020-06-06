@@ -13,12 +13,12 @@ public class SecurityAuthenticationSuccessHandler extends SavedRequestAwareAuthe
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws ServletException, IOException {
-        if (request.getHeader("accept").contains("application/json")) {
+//        if (request.getHeader("accept").contains("application/json")) {
             response.setContentType("application/json;charset=UTF-8");
             PrintWriter out = response.getWriter();
             out.write("{\"error_code\":\"0\", \"message\":\"欢迎登录系统\"}");
-        } else {
-            super.onAuthenticationSuccess(request, response, authentication);
-        }
+//        } else {
+//            super.onAuthenticationSuccess(request, response, authentication);
+//        }
     }
 }
