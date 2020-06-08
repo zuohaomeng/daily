@@ -1,6 +1,5 @@
 package com.meng.daily.basejava.concurrent;
 
-import sun.rmi.runtime.Log;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.StampedLock;

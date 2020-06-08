@@ -24,7 +24,6 @@ public class Demo {
 
         System.out.println("-----特定对象的方法引用：");
         cars.forEach(Car::repair);
-
         System.out.println("----构造器引用：它的语法是Class::new");
         final Car police = Car.create(Car::new);
         cars.forEach(police::follow);

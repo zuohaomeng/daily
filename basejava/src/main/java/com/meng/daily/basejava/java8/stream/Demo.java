@@ -19,19 +19,21 @@ public class Demo {
         stringList.add("ccc");
         stringList.add("bbb2");
         stringList.add("ddd1");
+        System.out.println("以a开头");
         stringList.stream()
                 .filter((a) -> a.startsWith("a"))
-                .forEach(System.out::println);
-        stringList.forEach((a) -> System.out.print(a+"\t"));
+                .forEach((a)->System.out.print("\t"));
+        System.out.println("\n遍历");
+        stringList.forEach((a) -> System.out.print(a + "\t"));
 
         System.out.println("\nstream sort");
         stringList.stream()
-                .sorted((a,b)->a.compareTo(b))
-                .forEach((a) -> System.out.print(a+"\t"));
+                .sorted((a, b) -> a.compareTo(b))
+                .forEach((a) -> System.out.print(a + "\t"));
 
         System.out.println("\n列表排序");
-        stringList.sort((a,b)->a.compareTo(b));
-        stringList.forEach((a) -> System.out.print(a+"\t"));
+        stringList.sort((a, b) -> a.compareTo(b));
+        stringList.forEach((a) -> System.out.print(a + "\t"));
 
     }
 }
