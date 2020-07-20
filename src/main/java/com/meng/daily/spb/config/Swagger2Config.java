@@ -22,7 +22,7 @@ public class Swagger2Config {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                //swagger要扫描的包路径123
+                //swagger要扫描的包路径1
                 .apis(RequestHandlerSelectors.basePackage("com.meng.spb"))
                 .paths(PathSelectors.any())
                 .build();
