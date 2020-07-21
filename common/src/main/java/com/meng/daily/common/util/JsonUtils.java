@@ -1,7 +1,7 @@
 package com.meng.daily.common.util;
 
 import com.alibaba.fastjson.JSON;
-import com.meng.daily.common.test.User;
+import com.meng.daily.common.base.User;
 
 /**
  * @Description: TODO

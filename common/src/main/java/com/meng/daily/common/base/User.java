@@ -1,4 +1,4 @@
-package com.meng.daily.common.test;
+package com.meng.daily.common.base;
 
 
 import lombok.Data;

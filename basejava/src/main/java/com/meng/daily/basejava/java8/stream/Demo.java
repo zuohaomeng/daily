@@ -1,15 +1,56 @@
 package com.meng.daily.basejava.java8.stream;
 
+import com.meng.daily.basejava.component.User;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
- * @Description: TODO
+ * @Description: https://www.cnblogs.com/owenma/p/12207330.html
  * @Author: Hao.Zuo
  * @Date: 2019/12/5 12:48
  */
 public class Demo {
     public static void main(String[] args) {
+
+        userMapToResult();
+    }
+
+    /**
+     * 使用map转化为Result格式
+     */
+    public static void userMapToResult(){
+        List<User> userList = new ArrayList();
+        userList.add(new User("1",1));
+        userList.add(new User("2",2));
+        userList.add(new User("3",3));
+        ArrayList arrayList = new ArrayList();
+
+        //stream转化为list
+        List list =  userList.stream().map(User::toResult).collect(Collectors.toList());
+        list.stream().forEach(System.out::println);
+    }
+    public static void demo3(){
+        Stream<Integer> stream = Stream.of(6, 4, 6, 7, 3, 9, 8, 10, 12, 14, 14);
+
+        Stream<Integer> newStream = stream.filter(s -> s > 5) //6 6 7 9 8 10 12 14 14
+                .distinct() //6 7 9 8 10 12 14
+                .skip(2) //9 8 10 12 14
+                .limit(2); //9 8
+        newStream.forEach(System.out::println);
+    }
+    public static void demo2(){
+        Stream<Integer> stream = Stream.of(1,2,3,4,5,6);
+
+        Stream<Integer> stream2 = Stream.iterate(0, (x) -> x + 2).limit(6);
+        stream2.forEach(System.out::println); // 0 2 4 6 8 10
+
+        Stream<Double> stream3 = Stream.generate(Math::random).limit(2);
+        stream3.forEach(System.out::println);
+    }
+    public static void demo1() {
         List<String> stringList = new ArrayList<>();
         stringList.add("ddd2");
         stringList.add("aaa2");
@@ -34,6 +75,5 @@ public class Demo {
         System.out.println("\n列表排序");
         stringList.sort((a, b) -> a.compareTo(b));
         stringList.forEach((a) -> System.out.print(a + "\t"));
-
     }
 }

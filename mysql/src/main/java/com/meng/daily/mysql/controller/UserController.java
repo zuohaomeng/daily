@@ -1,7 +1,6 @@
 package com.meng.daily.mysql.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.meng.daily.common.test.User;
 import com.meng.daily.mysql.entity.UserDo;
 import com.meng.daily.mysql.service.UserService;
 import io.swagger.annotations.ApiOperation;
