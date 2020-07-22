@@ -1,10 +1,11 @@
 package com.meng.daily.basejava.component;
 
 import com.meng.daily.basejava.java8.stream.UserResult;
+import lombok.Data;
 
 import java.io.Serializable;
 
-
+@Data
 public class User implements Serializable {
     public String name;
     public int age;
