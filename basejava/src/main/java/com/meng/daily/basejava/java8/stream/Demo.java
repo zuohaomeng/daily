@@ -1,23 +1,43 @@
 package com.meng.daily.basejava.java8.stream;
 
 import com.meng.daily.basejava.component.User;
-import org.springframework.util.comparator.Comparators;
 
+import java.io.BufferedReader;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
- * @Description: https://www.cnblogs.com/owenma/p/12207330.html
+ * @Description:
  * @Author: Hao.Zuo
  * @Date: 2019/12/5 12:48
  */
 public class Demo {
     public static void main(String[] args) {
+        //测试性能
+//        sortForTime();
+        System.out.println((int) Math.pow(2, 9 - 1));
+        //Stream的静态方法
+        createStream();
+    }
+    //文件读取为流
+    public static void fileStream(){
+//        BufferedReader reader = new BufferedReader(new )
+    }
+    public static void createStream() {
+        Stream<Integer> stream1 = Stream.of(1, 2, 3, 4, 5, 6, 7);
+        Stream<Integer> stream2 = Stream.iterate(1, (x) -> x * 2).limit(5);
 
-        sortForTime();
+        stream2.forEach((x)-> System.out.print(x+"\t"));
+        System.out.println();
+
+        Stream<Double> stream3 = Stream.generate(Math::random).limit(4);
+        stream3.forEach((x)-> System.out.print(x+"\t"));
     }
 
+    /**
+     * 测试stream，parallelStream，手动的性能。
+     */
     public static void sortForTime() {
         int LENGTH = 100;
         List<User> userList = new ArrayList();
