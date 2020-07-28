@@ -9,11 +9,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class BasejavaApplication {
 
     public static void main(String[] args) {
-        new Thread(()->{
-            for (int i=0;i<100;i++){
-                log.info("---test---"+i);
-            }
-        }).start();
         SpringApplication.run(BasejavaApplication.class, args);
     }
 

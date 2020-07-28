@@ -57,7 +57,7 @@ public class Demo {
         Set<Integer> list2 = list.stream().map(User::getAge).collect(Collectors.toSet());
         Map<String, Integer> map1 = list.stream().collect(Collectors.toMap(User::getName, User::getAge));
 
-            //字符串分隔符连接
+        //字符串分隔符连接
         String joiningName = list.stream().map(User::getName).collect(Collectors.joining(",", "(", ")"));
 
         //聚合操作
@@ -169,7 +169,7 @@ public class Demo {
      * 测试stream，parallelStream，手动的性能。
      */
     public static void sortForTime() {
-        int LENGTH = 100;
+        int LENGTH = 1000000;
         List<User> userList = new ArrayList();
         Random random = new Random(47);
         for (int i = 0; i < LENGTH; i++) {

@@ -10,7 +10,7 @@ spring:
       # 数据库访问配置, 使用druid数据源
       type: com.alibaba.druid.pool.DruidDataSource
       driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://${virtual.ip}:10002/daily?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
+      url: jdbc:mysql://${virtual.ip}:10002/mysql?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
       username: root
       password: 123456
       # 连接池配置
