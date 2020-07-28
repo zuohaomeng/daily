@@ -53,7 +53,7 @@ public class AsyncServiceTest {
             future.get();
         }
         System.out.println(Thread.currentThread().getName()+"321");
-//        countDownLatch.await();
+        countDownLatch.await();
     }
     @Test
     public void sortTest() throws ExecutionException, InterruptedException {
