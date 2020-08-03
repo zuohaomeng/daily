@@ -49,7 +49,10 @@ public class Demo {
 //        流的终止操作
 //        endOperation();
 //        收集操作
-        collectors();
+//        collectors();
+        List<String> phonesList = Stream.iterate("15397774197", (x) -> x = "15397774197").limit(3000).collect(Collectors.toList());
+        System.out.println(phonesList.size());
+        phonesList.stream().distinct().forEach(System.out::println);
     }
 
     public static void collectors() {
