@@ -16,10 +16,11 @@
     <modules>
        <module>basejava</module>
         <module>common</module>
-        <module>mysql</module>
-        <module>netty</module>
-        <module>oauth2</module>
-        <module>rocketmq</module>
+<!--        <module>mysql</module>-->
+<!--        <module>netty</module>-->
+<!--        <module>oauth2</module>-->
+<!--        <module>rocketmq</module>-->
+        <module>spbnodependence</module>
     </modules>
     <properties>
         <java.version>1.8</java.version>

@@ -7,8 +7,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.LongStream;
 import java.util.stream.Stream;
 
 /**
@@ -50,11 +53,11 @@ public class Demo {
 //        endOperation();
 //        收集操作
 //        collectors();
-        List<String> phonesList = Stream.iterate("15397774197", (x) -> x = "15397774197").limit(3000).collect(Collectors.toList());
-        System.out.println(phonesList.size());
-        phonesList.stream().distinct().forEach(System.out::println);
+        boxed();
     }
-
+    public static void boxed(){
+        return;
+    }
     public static void collectors() {
         List<Integer> list1 = list.stream().map(User::getAge).collect(Collectors.toList());
         Set<Integer> list2 = list.stream().map(User::getAge).collect(Collectors.toSet());
