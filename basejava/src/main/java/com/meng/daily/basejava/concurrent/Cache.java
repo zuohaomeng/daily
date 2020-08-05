@@ -64,7 +64,6 @@ public class Cache {
     }
 
     public static void main(String[] args) {
-        Cache cache = new Cache(10);
-        cache.get(1111);
+
     }
 }
