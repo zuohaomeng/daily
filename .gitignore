@@ -1,0 +1,17 @@
+/build
+/web/WEB-INF/lib
+/web/WEB-INF/classes
+/target
+.settings
+.classpath
+.project
+*.class
+hosts.properties
+.idea
+*.iml
+/bin/
+/disconf
+/target/
+.DS_Store
+/.factorypath
+.flattened-pom.xml
