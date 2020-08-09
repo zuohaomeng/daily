@@ -16,9 +16,11 @@ import java.math.BigDecimal;
 @RestController
 @RequestMapping("/double")
 public class DoubleController {
+
     public static void main(String[] args) {
-//        problem2();
-        problem3();
+        System.out.println(2);
+        //        problem2();
+//        problem3();
     }
 
     public static void problem1() {
