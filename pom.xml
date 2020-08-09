@@ -13,13 +13,14 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>daily</name>
     <description>Demo project for Spring Boot</description>
+    <packaging>pom</packaging>
     <modules>
-       <module>basejava</module>
+        <module>basejava</module>
         <module>common</module>
-<!--        <module>mysql</module>-->
-<!--        <module>netty</module>-->
-<!--        <module>oauth2</module>-->
-<!--        <module>rocketmq</module>-->
+        <!--        <module>mysql</module>-->
+        <!--        <module>netty</module>-->
+        <!--        <module>oauth2</module>-->
+        <!--        <module>rocketmq</module>-->
         <module>spbnodependence</module>
     </modules>
     <properties>
@@ -77,11 +78,6 @@
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>1.2.62</version>
-        </dependency>
-        <dependency>
-            <groupId>com.zhenai</groupId>
-            <artifactId>message-center-client</artifactId>
-            <version>0.3.1</version>
         </dependency>
     </dependencies>
     <build>
