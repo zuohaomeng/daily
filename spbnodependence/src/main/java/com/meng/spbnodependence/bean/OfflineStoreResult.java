@@ -99,4 +99,20 @@ public class OfflineStoreResult implements Serializable {
     public void setBusinessHours(String businessHours) {
         this.businessHours = businessHours;
     }
+
+    @Override
+    public String toString() {
+        return "OfflineStoreResult{" +
+                "storeId=" + storeId +
+                ", areaCode=" + areaCode +
+                ", city='" + city + '\'' +
+                ", storeName='" + storeName + '\'' +
+                ", address='" + address + '\'' +
+                ", businessHours='" + businessHours + '\'' +
+                ", listPicURL='" + listPicURL + '\'' +
+                ", storePicURL='" + storePicURL + '\'' +
+                ", longitude='" + longitude + '\'' +
+                ", latitude='" + latitude + '\'' +
+                '}';
+    }
 }
